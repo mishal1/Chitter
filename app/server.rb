@@ -3,7 +3,7 @@ require 'sinatra/partial'
 require 'data_mapper'
 require 'rack-flash'
 
-use Rack::Flash
+
 
 env = ENV['RACK_ENV'] || 'development'
 
@@ -18,6 +18,9 @@ set :public_folder, Proc.new { File.join(root, '.', 'public') }
 
 enable :sessions
 set :session_secret, 'super secret'
+
+use Rack::Flash
+use Rack::MethodOverride
 
 get '/' do
   @peeps = Peep.all
@@ -39,7 +42,7 @@ post '/signup' do
 		session[:user_id] = @user.id
 		redirect('/')
 	else
-		flash.now[:notice]="Sorry, your passwords don't match"
+		flash.now[:errors]=@user.errors.full_messages
 		erb :signup
 	end
 end
