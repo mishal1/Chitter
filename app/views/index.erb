@@ -1,1 +1,7 @@
-<h1>Hello World!</h1>
+<ul>
+
+<% @peeps.each do |peep| %>
+	<article><%= peep.text %><article>
+<% end %>
+
+</ul>
