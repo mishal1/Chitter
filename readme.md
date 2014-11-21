@@ -6,6 +6,7 @@ Chitter
 - A user can have many tweets
 - A tweet can only have one user
 - A tweet needs a name and a user handle
+- A tweet can only be 140 characters long
 - Show the list of tweets (in chronological order)
 - Allow a user to add tweets
 - User can sign up with a name, email, password and username
@@ -19,5 +20,6 @@ Chitter
 - Only signed in users can add a tweet
 - Forgotten password option
 - Email password to users
-- Styling
+- Styling:
+	- Align forms
 - Reply to a user's tweet
