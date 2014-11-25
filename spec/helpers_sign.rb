@@ -18,4 +18,13 @@ module SignIn
 		click_button("Sign me up!")
 	end
 
+	def forgets_password(email)
+		visit('/')
+		click_button('Sign in')
+		click_link('Forgot password?')
+		expect(page).to have_content("Please enter your email")
+		fill_in :email, :with=>email
+		click_button("Submit")
+	end
+
 end

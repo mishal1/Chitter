@@ -19,3 +19,28 @@ delete '/signout' do
   flash[:notice]="Goodbye!"
   redirect('/')
 end
+
+get '/forgot_password' do
+	erb :forgot_password
+end
+
+post '/forgot_password' do
+	user = User.first(:email => params[:email])
+	if user
+		user.update(:password_token => (1..50).map{('A'..'Z').to_a.sample}.join)
+		user.save
+		erb :sent_email
+	else
+		flash[:notice]= "Please enter a valid email address"
+		redirect('/forgot_password')
+	end
+end
+
+# get '/reset_password/:token' do
+# 	user = User.first(:password_token => params[:token])
+# 	# if user
+
+# 	# else
+
+# 	# end
+# end

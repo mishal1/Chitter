@@ -1,6 +1,6 @@
 require_relative "helpers_sign"
 
-feature "User signs in" do
+feature "User tries to sign in" do
 
 	include SignIn
 	
@@ -21,10 +21,33 @@ feature "User signs in" do
 
 	scenario "with incorrect credentials" do
 		visit('/')
-		expect(page).not_to have_content("Welcome, Mishal")
 		sign_in("m@m.com", "wrong")
-		expect(page).not_to have_content("Welcome, Mishal")
 		expect(page).to have_content("Your email or password was incorrect")
 	end
+
+		scenario "forgets password and uses an email that exists" do
+			forgets_password("test@test.com")
+			expect(page).to have_content("Your password token was sent to your email address")
+		end
+
+		scenario "forgets password and uses an email which doesn't exist" do
+			forgets_password("wrong@wrong.com")
+			expect(page).to have_content("Please enter a valid email address")
+		end
+
+		# scenario "resets password with valid token" do
+		# 	visit('/reset_password/1234')
+		# 	fill_in(:"new password", :with=>"1")
+		# 	fill_in(:"confirm new password", :with=>"1")
+		# 	click_button("submit")
+		# 	expect(page).to have_content("Please sign in")
+		# 	sign_in("test@test.com",'1')
+		# 	expect(page).to have_content("Welcome, Test")
+		# end
+
+		# scenario "tries to reset password with a token that isn't valid" do
+		# 	visit('/reset_password/1')
+		# 	expect(page).to have_content("Your token isn't valid")
+		# end
 
 end
