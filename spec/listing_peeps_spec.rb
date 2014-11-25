@@ -2,9 +2,9 @@ require 'spec_helper'
 
 feature "User sees peeps" do
 	
-	before(:each) {
-		Peep.create(:text => "hello!")
-	}
+	before(:each) do
+		Peep.create(:text =>"hello!")
+	end
 
 	scenario "when visiting the homepage, see peeps" do
 		visit ('/')

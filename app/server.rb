@@ -1,10 +1,8 @@
 require 'sinatra'
 require 'sinatra/partial'
-require 'data_mapper'
 require 'rack-flash'
 require_relative './data_mapper_setup'
-require_relative './models/peep'
-require_relative './models/user'
+
 
 set :partial_template_engine, :erb
 set :public_folder, Proc.new { File.join(root, '.', 'public') }
@@ -13,7 +11,6 @@ enable :sessions
 set :session_secret, 'super secret'
 
 use Rack::Flash
-use Rack::MethodOverride
 
 get '/' do
   @peeps = Peep.all
@@ -40,6 +37,22 @@ post '/signup' do
 	end
 end
 
+get '/signin' do
+	erb :signin
+end
+
+post "/signin" do
+	email, password = params[:email], params[:password]
+	user = User.authenticate(email, password)
+	if user
+		session[:user_id] = user.id
+		redirect ('/')
+	else
+		flash.now[:notice]= "Your email or password was incorrect"
+		erb :signin
+	end
+end
+
 helpers do
 
 	def current_user
@@ -47,3 +60,5 @@ helpers do
 	end
 
 end
+
+#Add a view that if the user is already signed in they see logout button instead of the sign in form

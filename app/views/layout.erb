@@ -9,7 +9,13 @@
   <body>
 
   <% if current_user %>
-  	Welcome, <%= current_user.email %>
+  	Welcome, <%= current_user.name.capitalize %>
+  <% end %>
+
+  <% if flash[:notice]%>
+
+    <%= flash[:notice]%>
+
   <% end %>
 
   <% if flash[:errors] && !flash[:errors].empty? %>
