@@ -1,3 +1,11 @@
+<% if !current_user %>
+
+  <form action='/signin' method='get'>
+      <input type="submit" value="Sign in">
+  </form>
+
+<% end %>
+
 <ul>
 
 <% @peeps.each do |peep| %>

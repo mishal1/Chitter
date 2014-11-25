@@ -1,7 +1,7 @@
 module SignIn
 
 	def sign_in(email, password)
-		visit('/signin')
+		click_button 'Sign in'
 		fill_in('email', :with=>email)
 		fill_in('password', :with=>password)
 		click_button("Sign in")
