@@ -1,18 +1,9 @@
+require_relative "helpers_sign"
 require 'spec_helper'
 
 feature "User signs up" do
 
-	def sign_up_password_is(password)
-		visit('/signup')
-		expect(page.status_code).to eq(200)
-		fill_in :name, :with=> 'bob'
-		fill_in :email, :with=> 'bob12@bob.com'
-		fill_in :username, :with=>'bob12'
-		fill_in :password, :with=> 'right'
-		fill_in :password_confirmation, :with=> password
-		click_button("Sign me up!")
-	end
-	
+	include SignIn
 
 	scenario "with their passwords matching" do
 		

@@ -1,4 +1,8 @@
+require_relative "helpers_sign"
+
 feature "User signs in" do
+
+	include SignIn
 	
 	before(:each) do
 		User.create(:name=>"test",
@@ -8,18 +12,11 @@ feature "User signs in" do
 					:password_confirmation=>"test")
 	end
 
-	def sign_in(email, password)
-		visit('/signin')
-		fill_in('email', :with=>email)
-		fill_in('password', :with=>password)
-		click_button("Sign in")
-	end
-
 	scenario "with the correct credentials" do
 		visit('/')
-		expect(page).not_to have_content("Welcome, Mishal")
-		sign_in('m@m.com', "test")
-		expect(page).to have_content("Welcome, Mishal")
+		expect(page).not_to have_content("Welcome, Test")
+		sign_in("test@test.com", "test")
+		expect(page).to have_content("Welcome, Test")
 	end
 
 	scenario "with incorrect credentials" do

@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/partial'
 require 'rack-flash'
+require_relative './helpers/current'
 require_relative './data_mapper_setup'
 
 
@@ -53,12 +54,10 @@ post "/signin" do
 	end
 end
 
-helpers do
-
-	def current_user
-		@current_user ||=User.get(session[:user_id]) if session[:user_id]
-	end
-
+delete '/signout' do
+  session[:user_id]=nil
+  flash[:notice]="Goodbye!"
+  redirect('/')
 end
 
 #Add a view that if the user is already signed in they see logout button instead of the sign in form
