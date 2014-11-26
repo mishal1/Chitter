@@ -9,7 +9,8 @@ feature "User tries to sign in" do
 					:email=>"test@test.com",
 					:username=>"test",
 					:password=>"test",
-					:password_confirmation=>"test")
+					:password_confirmation=>"test",
+					:password_token => "1234")
 	end
 
 	scenario "with the correct credentials" do
@@ -35,19 +36,27 @@ feature "User tries to sign in" do
 			expect(page).to have_content("Please enter a valid email address")
 		end
 
-		# scenario "resets password with valid token" do
-		# 	visit('/reset_password/1234')
-		# 	fill_in(:"new password", :with=>"1")
-		# 	fill_in(:"confirm new password", :with=>"1")
-		# 	click_button("submit")
-		# 	expect(page).to have_content("Please sign in")
-		# 	sign_in("test@test.com",'1')
-		# 	expect(page).to have_content("Welcome, Test")
-		# end
+		scenario "resets password with valid token" do
+			visit('/reset_password/1234')
+			fill_in(:new_password, :with=>"1")
+			fill_in(:confirm_password, :with=>"1")
+			click_button("submit")
+			expect(page).to have_content("Please sign in")
+			sign_in("test@test.com",'1')
+			expect(page).to have_content("Welcome, Test")
+		end
 
-		# scenario "tries to reset password with a token that isn't valid" do
-		# 	visit('/reset_password/1')
-		# 	expect(page).to have_content("Your token isn't valid")
-		# end
+		scenario "tries to reset password with a token that isn't valid" do
+			visit('/reset_password/1')
+			expect(page).to have_content("Your token isn't valid")
+		end
+
+		scenario "resets password with valid token but the passwords don't match" do
+			visit('/reset_password/1234')
+			fill_in(:new_password, :with=>"1")
+			fill_in(:confirm_password, :with=>"2")
+			click_button("submit")
+			expect(page).to have_content("Your passwords don't match")
+		end
 
 end

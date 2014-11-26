@@ -36,11 +36,29 @@ post '/forgot_password' do
 	end
 end
 
-# get '/reset_password/:token' do
-# 	user = User.first(:password_token => params[:token])
-# 	# if user
+get '/reset_password/:token' do
+	session[:user_token] = params[:token]
+	user = User.first(:password_token => params[:token])
+	if user
+		erb :reset_password
+	else
+		erb :invalid_token
+	end
+end
 
-# 	# else
+post '/reset_password' do
+	user = User.first(:password_token=>session[:user_token])
+	user.update(:password=>params[:new_password],
+				:password_confirmation=> params[:confirm_password])
+	if user.save
+		redirect('/signin')
+	else
+		flash[:notice]="Your passwords don't match"
+		redirect("/reset_password/#{session[:user_token]}")
+	end
+end
 
-# 	# end
-# end
+
+
+
+
