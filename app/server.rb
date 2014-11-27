@@ -6,6 +6,7 @@ require_relative './data_mapper_setup'
 require_relative './controllers/homepage'
 require_relative './controllers/new_user'
 require_relative './controllers/existing_user'
+require_relative './controllers/peeps'
 
 enable :sessions
 set :session_secret, 'super secret'

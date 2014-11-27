@@ -27,4 +27,9 @@ module SignIn
 		click_button("Submit")
 	end
 
+	def add_peep(text)
+		fill_in 'Write a peep', :with=>text
+		click_button "Submit peep"
+	end
+
 end
