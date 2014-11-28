@@ -6,7 +6,7 @@ feature "User sees peeps" do
 	include SignIn
 
 	scenario "when visiting the homepage, see peeps" do
-		Peep.create(:text =>"hello!")
+		Peep.create(:text =>"hello!", :user_id=>1)
 		visit ('/')
 		expect(page).to have_content("hello!")
 	end
@@ -23,8 +23,7 @@ feature "User sees peeps" do
 		expect(page).to have_field("Write a peep")
 		add_peep("hello")
 		expect(Peep.count).to eq(1)
-		peep = Peep.first
-		expect(peep.text).to eq("hello")
+		expect(page).to have_content("hello")
 	end
 
 	scenario "when a user is not signed in they should not be able to write a peep" do

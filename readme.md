@@ -10,6 +10,7 @@ Chitter
 - Show the list of tweets (in chronological order)
 - Allow a user to add tweets
 - User can sign up with a name, email, password and username
+- List the users peeps
 - A user must confirm their password
 - Use bcrypt to handle passwords
 - The user's email and username must be unique to prevent duplicate registrations
@@ -20,6 +21,7 @@ Chitter
 - Only signed in users can add a tweet
 - Forgotten password option
 - Email password to users
+- User should be able to delete peep
 - Styling:
 	- Align forms
 - Reply to a user's tweet

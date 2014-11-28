@@ -7,6 +7,7 @@ require_relative './controllers/homepage'
 require_relative './controllers/new_user'
 require_relative './controllers/existing_user'
 require_relative './controllers/peeps'
+require_relative './controllers/forgot_password'
 
 enable :sessions
 set :session_secret, 'super secret'

@@ -11,6 +11,8 @@ class User
 	property :password_digest, Text
 	property :password_token, Text
 
+	has n, :peep, :through=> Resource
+
 	attr_reader :password
 	attr_accessor :password_confirmation
 
