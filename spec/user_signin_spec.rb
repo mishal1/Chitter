@@ -2,7 +2,7 @@ require_relative "helpers_sign"
 
 feature "User tries to sign in" do
 
-	include SignIn
+	include Helper
 	
 	before(:each) do
 		User.create(:name=>"test",

@@ -2,14 +2,10 @@ require_relative "helpers_sign"
 
 feature 'User signs out' do
 
-	include SignIn
+	include Helper
 
 	before(:each) do
-		User.create(:name=>"test",
-					:email=>"test@test.com",
-					:username=>"test",
-					:password=>"test",
-					:password_confirmation=>"test")
+		create_user
 	end
 
 	scenario "while being signed in" do

@@ -14,9 +14,19 @@
 
 <% end %>
 
+<% if !current_user %>	
+
+	<form action='/signup' method='get'>
+		<input type="submit" value="Sign up">
+	</form>
+
+<% end %>	
+
 <ul>
 
-<% @peeps.each do |peep| %>
+<% reverse_peeps = @peeps.reverse %>
+
+<% reverse_peeps.each do |peep| %>
 	<article><%=peep.text%><article>
 <% end %>
 
