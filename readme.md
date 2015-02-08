@@ -1,27 +1,36 @@
-Chitter
-=======
-- Add the database 
-- Create two different datbases for testing and development 
-- Clean the database for testing 
-- A user can have many tweets
-- A tweet can only have one user
-- A tweet needs a name and a user handle
-- A tweet can only be 140 characters long
-- Show the list of tweets (in chronological order)
-- Allow a user to add tweets
-- User can sign up with a name, email, password and username
-- List the users peeps
-- A user must confirm their password
-- Use bcrypt to handle passwords
-- The user's email and username must be unique to prevent duplicate registrations
-- A user's details are saved in the database using data mapper and postgres
-- A user can sign in
-- A welcome message is displayed when logged in
-- A user can sign out
-- Only signed in users can add a tweet
-- Forgotten password option
-- Email password to users
-- User should be able to delete peep
-- Styling:
-	- Align forms
-- Reply to a user's tweet
+#Chitter
+
+Week 4 Challenge at Maker's Academy.
+
+##Context
+The task was to create a Twitter clone that will allow the users to post messages to a public stream.
+
+The website has the following functionality:
+- In order to use chitter a user should sign up to the service
+- In order to use chitter a user needs to log in
+- In order to avoid others their account, a user can sign out
+- In order to let people know what they are doing, a user can post a message to chitter
+- In order to see what people have to say a user sees all peeps in chronological order
+- Users sign up to chitter with their email, password, name and a user name
+- Their username and email are unique.
+- Peeps have the name of the user and their user handle.
+- Bcrypt is used to secure the passwords.
+- Data mapper and postgres save the data.
+- You don't have to be logged in to see the peeps.
+- You only can peep if you are logged in.
+
+##Learning Objectives
+- Acceptance testing: Capybara
+- Relational databases
+- Security considerations
+
+##Technology Used
+- Ruby
+- Rspec
+- Sinatra
+- Capybara
+- PostgresSQL
+- Data Mapper
+- DataBase Cleaner
+- BCrypt
+- Rack-Flash
