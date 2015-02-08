@@ -1,6 +1,6 @@
 #Chitter
 
-Week 4 Challenge at Maker's Academy.
+Week 4 Challenge at Makers Academy.
 
 ##Context
 The task was to create a Twitter clone that will allow the users to post messages to a public stream.
